@@ -1000,19 +1000,11 @@ function openResult() {
   persons.forEach((p, i) => {
     const name = p.name || `교육생 ${i+1}`;
     let grandY=0, grandN=0, grandD=0;
-    let sectionsHtml = '';
     ['s1','s2l','s2u'].forEach(sk => {
       const c = checks[sk][p.id] || {};
-      const y = countVal(c,'Y'), n = countVal(c,'N'), d = countVal(c,'D');
-      grandY+=y; grandN+=n; grandD+=d;
-      sectionsHtml += `<div class="result-section-row">
-        <span class="result-section-label">${SECTION_LABELS[sk]}</span>
-        <div class="result-pills">
-          <span class="result-pill stat-y">Y ${y}</span>
-          <span class="result-pill stat-n">N ${n}</span>
-          <span class="result-pill stat-d">D ${d}</span>
-        </div>
-      </div>`;
+      grandY += countVal(c,'Y');
+      grandN += countVal(c,'N');
+      grandD += countVal(c,'D');
     });
     html += `<div class="result-person-card">
       <div class="result-person-header">
@@ -1020,10 +1012,7 @@ function openResult() {
         <span class="result-person-name">${name}</span>
       </div>
       <div class="result-body">
-        ${sectionsHtml}
-        <hr class="result-divider">
         <div class="result-total-row">
-          <span class="result-total-label">🔢 전체 합계</span>
           <div class="result-total-pills">
             <span class="result-total-pill ty">Y ${grandY}</span>
             <span class="result-total-pill tn">N ${grandN}</span>
@@ -1055,7 +1044,7 @@ addPerson();
   <div class="modal-box">
     <div class="modal-header">
       <span style="font-size:20px">📋</span>
-      <h2>체크리스트 결과</h2>
+      <h2>기본간호1 체크리스트 결과</h2>
       <button class="modal-close" onclick="closeResult()">✕</button>
     </div>
     <div class="modal-body" id="resultBody"></div>
