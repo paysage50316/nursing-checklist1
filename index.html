@@ -995,6 +995,9 @@ function openResult() {
     alert('교육생이 없습니다. 교육생을 추가해 주세요.');
     return;
   }
+  const today = new Date();
+  const dateStr = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+  document.getElementById('resultDate').textContent = dateStr;
   const body = document.getElementById('resultBody');
   let html = '';
   persons.forEach((p, i) => {
@@ -1044,7 +1047,7 @@ addPerson();
   <div class="modal-box">
     <div class="modal-header">
       <span style="font-size:20px">📋</span>
-      <h2>기본간호1 체크리스트 결과</h2>
+      <h2>기본간호1 체크리스트 결과&nbsp;<span id="resultDate" style="font-size:13px;font-weight:500;color:var(--text-secondary)"></span></h2>
       <button class="modal-close" onclick="closeResult()">✕</button>
     </div>
     <div class="modal-body" id="resultBody"></div>
